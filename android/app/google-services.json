@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "97172309057",
+    "project_id": "kebab-katowice",
+    "storage_bucket": "kebab-katowice.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97172309057:android:0b4c8704752d547e6372c0",
+        "android_client_info": {
+          "package_name": "com.sebastianpilch.kebab_katowice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97172309057-uvg38mu1o1q6i04srgb9dij68n1b4fdr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdR1kh1ExwLw_ylOErEb2tuoE1iwJNlwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97172309057-uvg38mu1o1q6i04srgb9dij68n1b4fdr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "97172309057-tmmlbkqcihl5mbc43r9ho0g4igfl3skd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sebastianpilch.kebabKatowice"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
