@@ -13,6 +13,7 @@ class AddOpinionPageContent extends StatefulWidget {
 class _AddOpinionPageContentState extends State<AddOpinionPageContent> {
   var restaurantName = '';
   var kebabName = '';
+  var rating = 3.0;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +44,18 @@ class _AddOpinionPageContentState extends State<AddOpinionPageContent> {
               },
             ),
             const SizedBox(height: 20),
+            Slider(
+                min: 1.0,
+                max: 6.0,
+                divisions: 10,
+                value: rating,
+                label: rating.toString(),
+                onChanged: (newValue) {
+                  setState(() {
+                    rating = newValue;
+                  });
+                }),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: restaurantName.isEmpty || kebabName.isEmpty
                   ? null
@@ -54,7 +67,8 @@ class _AddOpinionPageContentState extends State<AddOpinionPageContent> {
                       });
                     },
               child: const Text('Dodaj'),
-            )
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
