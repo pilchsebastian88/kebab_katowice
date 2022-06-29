@@ -1,47 +1,58 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({
     Key? key,
   }) : super(key: key);
-
   final loginController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  var errorMessage = '';
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Zaloguj się'),
-            const SizedBox(height: 20),
-            TextField(
-              controller: loginController,
-              decoration: const InputDecoration(hintText: 'podaj email'),
-            ),
-            TextField(
-              controller: passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(hintText: 'podaj hasło'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                try {
-                  await FirebaseAuth.instance.signInWithEmailAndPassword(
-                    email: loginController.text,
-                    password: passwordController.text,
-                  );
-                } catch (error) {
-                  print(error);
-                }
-              },
-              child: const Text('Zaloguj się'),
-            )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('Zaloguj się'),
+              const SizedBox(height: 20),
+              TextField(
+                controller: widget.loginController,
+                decoration: const InputDecoration(hintText: 'podaj email'),
+              ),
+              TextField(
+                controller: widget.passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(hintText: 'podaj hasło'),
+              ),
+              Text(errorMessage),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                      email: widget.loginController.text,
+                      password: widget.passwordController.text,
+                    );
+                  } catch (error) {
+                    setState(() {
+                      errorMessage = error.toString();
+                    });
+                  }
+                },
+                child: const Text('Zaloguj się'),
+              )
+            ],
+          ),
         ),
       ),
     );
