@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 class AddOpinionPageContent extends StatefulWidget {
   const AddOpinionPageContent({
     Key? key,
+    required this.onSave,
   }) : super(key: key);
+  final Function onSave;
 
   @override
   State<AddOpinionPageContent> createState() => _AddOpinionPageContentState();
@@ -65,6 +67,7 @@ class _AddOpinionPageContentState extends State<AddOpinionPageContent> {
                         'kebab': kebabName,
                         'rating': rating,
                       });
+                      widget.onSave();
                     },
               child: const Text('Dodaj'),
             ),

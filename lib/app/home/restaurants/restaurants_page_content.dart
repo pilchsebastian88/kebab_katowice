@@ -19,26 +19,31 @@ class RestaurantsPageContent extends StatelessWidget {
             return const Text('Wystąpił błąd');
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text('Trwa łądowanie danych');
+            return const Text('Trwa ładowanie danych');
           }
           final documents = snapshot.data!.docs;
           return Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(6.0),
             child: ListView(
               children: [
                 for (final document in documents) ...[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(document['name']),
-                          Text(document['kebab']),
-                        ],
-                      ),
-                      Text(document['rating'].toString()),
-                    ],
+                  Container(
+                    color: Color.fromARGB(255, 231, 167, 143),
+                    padding: EdgeInsets.all(10),
+                    margin: EdgeInsets.all(5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(document['name']),
+                            Text(document['kebab']),
+                          ],
+                        ),
+                        Text(document['rating'].toString()),
+                      ],
+                    ),
                   ),
                 ],
               ],
