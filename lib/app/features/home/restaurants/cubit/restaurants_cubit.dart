@@ -23,6 +23,8 @@ class RestaurantsCubit extends Cubit<RestaurantsState> {
       isLoading: true,
     ));
 
+    await Future.delayed(const Duration(seconds: 2));
+
     _streamSubscription = FirebaseFirestore.instance
         .collection('restaurants')
         .orderBy('rating', descending: true)
