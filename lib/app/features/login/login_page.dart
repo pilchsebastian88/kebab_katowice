@@ -1,5 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kebab_katowice/app/cubit/root_cubit.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({
@@ -43,11 +44,12 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () async {
                   if (isCreatingAccount == true) {
                     try {
-                      await FirebaseAuth.instance
+                      await context
+                          .read<RootCubit>()
                           .createUserWithEmailAndPassword(
-                        email: widget.loginController.text,
-                        password: widget.passwordController.text,
-                      );
+                            email: widget.loginController.text,
+                            password: widget.passwordController.text,
+                          );
                     } catch (error) {
                       setState(() {
                         errorMessage = error.toString();
@@ -55,10 +57,12 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   } else {
                     try {
-                      await FirebaseAuth.instance.signInWithEmailAndPassword(
-                        email: widget.loginController.text,
-                        password: widget.passwordController.text,
-                      );
+                      await context
+                          .read<RootCubit>()
+                          .signInWithEmailAndPassword(
+                            email: widget.loginController.text,
+                            password: widget.passwordController.text,
+                          );
                     } catch (error) {
                       setState(() {
                         errorMessage = error.toString();
@@ -78,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                       isCreatingAccount = true;
                     });
                   },
-                  child: Text('Utwórz konto'),
+                  child: const Text('Utwórz konto'),
                 ),
               ],
               if (isCreatingAccount == true) ...[
@@ -88,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                       isCreatingAccount = false;
                     });
                   },
-                  child: Text('Masz już konto?'),
+                  child: const Text('Masz już konto?'),
                 ),
               ],
             ],
